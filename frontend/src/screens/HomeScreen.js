@@ -1,6 +1,7 @@
 import React from 'react'
 import products from '../products'
-import Products from '../componets/Products'
+import Product from '../componets/Product'
+import { Col, Row} from 'react-bootstrap'
 
 const HomeScreen = () => {
   return (
@@ -9,7 +10,7 @@ const HomeScreen = () => {
       <Row>
         {products.map(p => (
             <Col sm={12} md={16} lg={4} xl={3}>
-              <Products products={p}/>
+              <Product product={p}/>
             </Col>
           ))
           //map function lets you loop through data.

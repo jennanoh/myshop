@@ -1,15 +1,15 @@
 //jsx file (js file with html in a function)
 //html must all be within one <>
-
+import {Container} from 'react-bootstrap'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Footer from "./componets/Footer";
 import Header from "./componets/Header";
-import {Container} from 'react-bootstrap'
+import HomeScreen from './screens/HomeScreen'
+import ProductScreen from './screens/ProductScreen';
 
 /*function App() {
   return (
-    <>
-     
-    </>
+    <></>
   );
 }*/
 
@@ -18,13 +18,18 @@ import {Container} from 'react-bootstrap'
 const App = () => {
   return(
     <>
+    <Router>
     <Header />
       <main>
         <Container>
-          <HomeScreen/>
+          <Routes>
+            <Route path="/" exact element={<HomeScreen />} />
+            <Route path="/product/:id" element={<ProductScreen />} />
+          </Routes>
         </Container>
       </main>
     <Footer />
+    </Router>
     </>
   );
 }
