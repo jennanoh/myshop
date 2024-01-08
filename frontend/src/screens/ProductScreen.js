@@ -1,15 +1,23 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Row,Col,Image,Card,Button, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { useParams, Link } from 'react-router-dom'
-import products from '../products'
 import Rating from '../componets/Rating'
 //using hooks in our components to read parameters through the useParams hook
 //we can find the product by the id in the url this way
 //use before rendering/displaying (aka return)
 
 const ProductScreen = () => {
+
   const params = useParams();
-  const product = products.find(p => p._id === params.id)
+  const [product, setProduct] = useState({})
+  useEffect(() => {
+    const fetchProduct = async() => {
+      const {data} = await axios.get(`/api/product/${params.id}`)
+      setProduct(data)
+    }
+
+    fetchProduct()
+  })
   
   return (
     <>
