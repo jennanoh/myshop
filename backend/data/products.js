@@ -79,7 +79,7 @@ const products = [
   },
 ]
 
-//export default products
+export default products
 //this is only readable within react
-module.exports = products
+//module.exports = products
 //this is js
