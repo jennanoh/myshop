@@ -1,7 +1,11 @@
-import { express } from 'express'
-import products from './data/products'
+import express from 'express'
+import dotenv from 'dotenv'
+import products from './data/products.js'
+import connectDB from './config/db.js'
 
 const app = express()
+dotenv.config()
+connectDB()
 
 //if someone calls route '/api/products' through the get funtion
 //the request will result in a response which is json data of the products
