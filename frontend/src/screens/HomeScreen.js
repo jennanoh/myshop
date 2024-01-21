@@ -4,6 +4,8 @@ import Product from '../componets/Product'
 import { Col, Row} from 'react-bootstrap'
 
 //axios or fetch is often used to call the api
+//useEffect is the first hook of the component - when it comes into effect - in this case we need to get the data when the component comes into effect
+//useState is a hook where you can store data 
 const HomeScreen = () => {
 
   const [products, setProducts] = useState([])
@@ -13,7 +15,7 @@ const HomeScreen = () => {
       const {data} = await axios.get('/api/products')
       //we just want the data portion of the response (res)
       //this is deconstruction
-      //async and await are a pair. wait for axios to fetch
+      //async and await are a pair. the main thread waits for axios to fetch from a secondary thread
       setProducts(data)
     }
 
