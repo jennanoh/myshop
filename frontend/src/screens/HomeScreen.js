@@ -12,7 +12,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     const fetchProducts = async () =>{
-      const {data} = await axios.get('/api/products')
+      const {data} = await axios.get('/api/products/')
       //we just want the data portion of the response (res)
       //this is deconstruction
       //async and await are a pair. the main thread waits for axios to fetch from a secondary thread

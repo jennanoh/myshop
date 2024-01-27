@@ -1,23 +1,14 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import products from './data/products.js'
 import connectDB from './config/db.js'
+import productRoutes from './routes/productRoutes.js'
 
 const app = express()
 dotenv.config()
 connectDB()
 
-//if someone calls route '/api/products' through the get funtion
-//the request will result in a response which is json data of the products
-//below is our first api
-app.get('/api/products', (req, res) => {
-  res.json(products)
-})
+app.use('/api/products', productRoutes)
+//if you call '...', go to productRoutes
 
-app.get('/api/products/:id', (req,res) => {
-  const product = products.find(p => p._id === req.params.id)
-  res.json(product)
-})
-
-//this tells you that the backend is running
 app.listen(5000, console.log('Server is running on port 5000'))
+//this tells you that the backend is running

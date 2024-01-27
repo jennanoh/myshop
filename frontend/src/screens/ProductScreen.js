@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import { Row,Col,Image,Card,Button, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Row,Col,Image,Card,Button, ListGroup } from 'react-bootstrap'
 import { useParams, Link } from 'react-router-dom'
 import Rating from '../componets/Rating'
+import axios from 'axios'
 //using hooks in our components to read parameters through the useParams hook
 //we can find the product by the id in the url this way
 //use before rendering/displaying (aka return)
@@ -12,7 +13,7 @@ const ProductScreen = () => {
   const [product, setProduct] = useState({})
   useEffect(() => {
     const fetchProduct = async() => {
-      const {data} = await axios.get(`/api/product/${params.id}`)
+      const {data} = await axios.get(`/api/products/${params.id}`)
       setProduct(data)
     }
 
