@@ -1,42 +1,48 @@
-import React, {useEffect, useState} from 'react'
-import axios from 'axios'
-import Product from '../componets/Product'
+import React, {useEffect} from 'react'
 import { Col, Row} from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import Product from '../componets/Product'
+import { listProducts } from '../actions/productActions'
+import Loader from '../componets/Loader'
+import Message from '../componets/Message'
 
-//axios or fetch is often used to call the api
-//useEffect is the first hook of the component - when it comes into effect - in this case we need to get the data when the component comes into effect
-//useState is a hook where you can store data 
+
 const HomeScreen = () => {
 
-  const [products, setProducts] = useState([])
+  const dispatch = useDispatch()
+  //we will be using the dispatch hook
+    useEffect(() => {
+      dispatch(listProducts())
+      //trigger the action function
+    },[dispatch])
 
-  useEffect(() => {
-    const fetchProducts = async () =>{
-      const {data} = await axios.get('/api/products/')
-      //we just want the data portion of the response (res)
-      //this is deconstruction
-      //async and await are a pair. the main thread waits for axios to fetch from a secondary thread
-      setProducts(data)
-    }
+  const productList = useSelector((state) => state.productList)
+  const {loading, products, error} = productList
+  //we want to select the productList data from the state
+  //this is the name of our reducer - see store.js
+  //we want all three types of data productList.loading, productList.products and productList.error
 
-    fetchProducts()
-  })
+return (
+  <>
+    <h1>Latest Products</h1>
+      {
+          loading? <Loader/> :
+            error? (<Message variant='danger'>{error}</Message>) :
+          (<Row>
+            {products.map(p => (
+              <Col key={p._id} sm={12} md={16} lg={4} xl={3}>
+                <Product product={p}/>
+              </Col>
+            ))
+            //map function lets you loop through data.
+            //pass the products parameter to the Products component
+            }
+          </Row>)
+      }
 
-  return (
-    <>
-      <h1>Latest Products</h1>
-      <Row>
-        {products.map(p => (
-            <Col sm={12} md={16} lg={4} xl={3}>
-              <Product product={p}/>
-            </Col>
-          ))
-          //map function lets you loop through data.
-          //pass the products parameter to the Products component
-        }
-      </Row>
-    </>
-  )
+  </>
+)
 }
+
 
 export default HomeScreen
