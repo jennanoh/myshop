@@ -14,7 +14,7 @@ const ProductScreen = () => {
 
   const[qty, setQty] = useState(1)
   //use the local state for qty since we only need it here
-  //(1) is the default value
+  //(1) is the default qty value
   const params = useParams();
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -90,9 +90,13 @@ const ProductScreen = () => {
                         onChange={e => setQty(e.target.value)}
                       >
                         {
-                          [...Array(product.countInStock).keys()].map (x => (<option key={x+1} value={x+1}>{x+1}</option>))
+                          [...Array(product.countInStock).keys()].map (x => (
+                          <option key={x+1} value={x+1}>
+                            {x+1}
+                          </option>))
                           //spread the countInStock to an array of nums
                           //for each index(key) of the array make an option in the drop down
+                          //next option is greater than the last by 1
                         }
                       </Form.Select>
                       </Col>
