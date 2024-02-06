@@ -29,7 +29,9 @@ const CartScreen = () => {
   }
 
   const checkoutHandler = () => {
-    navigate('/login?redirect=shipping')
+    navigate('/login?redirect=/shipping')
+    //redirect to shipping is optional
+    //read using the useLocation hook in LoginScreen
   }
   return (
     <Row className='mt-5'>
