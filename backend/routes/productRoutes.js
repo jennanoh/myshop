@@ -1,27 +1,21 @@
 import express from 'express'
-import asyncHandler from 'express-async-handler'
-import Product from '../models/productModel.js'
+import { getProductById, getProducts } from '../controllers/productController.js'
+
 
 const router = express.Router()
 //unlike server.js, we only need the router functionality from express 
-
-router.get('/', asyncHandler(async(req, res) => {
-  const products = await Product.find({})
-  res.json(products)
-}))
+// @desc  Fetch all products
+//route   GET /api/products/
+//access  public
+router.get('/', getProducts)
 //if someone calls route '/api/products/' from server.js
 //through the get funtion 
-//the request will result in a response which is json data of the products
+//the request will call a controller function 
 
-router.get('/:id', asyncHandler(async(req,res) => {
-  const product = await Product.findById(req.params.id)
-  if(product){
-    res.json(product)
-  } else {
-    res.status(404).json({message:'Product not found'})
-  }
-  
-}))
+// @desc  Fetch all products by id
+//route   GET /api/products/:id
+//access  public
+router.get('/:id', getProductById)
 //if someone calls route '/api/products/:id'
 
 export default router
