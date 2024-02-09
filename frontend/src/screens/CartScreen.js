@@ -54,7 +54,8 @@ const CartScreen = () => {
                     </Col>
                     <Col md={2}>{item.price}</Col>
                     <Col md={2}>
-                      <Form.Select
+                      <Form.Control
+                        as = 'select'
                         value = {item.qty}
                         onChange = {(e) =>
                           dispatch(
@@ -62,11 +63,11 @@ const CartScreen = () => {
                           )
                         }
                       > {[...Array(item.countInStock).keys()].map((x) => (
-                        <option key={x+1} value={x+1}>
+                        <option key={x+1} value={item.qty}>
                           {x+1}
                         </option>
                       ))}
-                      </Form.Select>
+                      </Form.Control>
                     </Col>
                     <Col md={2}>
                       <Button
@@ -88,9 +89,7 @@ const CartScreen = () => {
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2> {/*accumulate all the cart items, reduce to one number. default is 0*/}
-                Subtotal ({cartItems.reduce(
-                  (acc, item) => acc + item.qty, 0
-                  )})
+                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                 items
               </h2>
               $ {/*show dollar value. to 2 decimal places*/}

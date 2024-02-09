@@ -1,10 +1,20 @@
 //made with extension shortcut rafce to creat a component
 import React from 'react'
-import { Navbar } from 'react-bootstrap'
-import {Container} from 'react-bootstrap'
-import { Nav } from 'react-bootstrap'
+import { useDispatch, useSelector} from 'react-redux'
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+//Linkcontainers let you link based on a condition
+import { logout } from '../actions/userActions'
 
 const Header = () => {
+ const dispatch = useDispatch()
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const {userInfo} = userLogin
+  
+  const logoutHandler = () => {
+    dispatch(logout())
+  }
   return (
     <header>
     <Navbar expand ="lg" bg="dark" variant ="dark">
@@ -13,8 +23,24 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="/cart"><i className ='fas fa-cart-plus'></i>Cart</Nav.Link>
-            <Nav.Link href="/login"><i className ='fas fa-user'></i>Sign In</Nav.Link>
+            <LinkContainer to="/cart">
+              <Nav.Link><i className ='fas fa-cart-plus'></i>Cart</Nav.Link>
+            </LinkContainer>
+            {userInfo?(
+            <NavDropdown title={userInfo.name} id='username'>
+              <LinkContainer to='/profile'>
+                <NavDropdown.Item>Profile</NavDropdown.Item>
+              </LinkContainer>
+              <NavDropdown.Item onClick={logoutHandler}>
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
+            ) : (
+              <LinkContainer to='/login'>
+                <Nav.Link><i className ='fas fa-user'></i>Sign In</Nav.Link>
+              </LinkContainer>
+            )}
+
           </Nav>
         </Navbar.Collapse>   
       </Container>
