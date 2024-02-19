@@ -2,8 +2,8 @@ import React, {useState} from 'react'
 import { Button, Form  } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { FormContainer } from '../componets/FormContainer'
-import CheckoutSteps from '../componets/CheckoutSteps'
+import { FormContainer } from '../components/FormContainer'
+import CheckoutSteps from '../components/CheckoutSteps'
 import { saveShippingAddress } from '../actions/cartActions'
 
 const ShippingScreen = () => {

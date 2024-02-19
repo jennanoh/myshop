@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react'
 import { Col, Row} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import Loader from '../componets/Loader'
-import Message from '../componets/Message'
-import Product from '../componets/Product'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
+import Product from '../components/Product'
 import { listProducts } from '../actions/productActions'
 
 

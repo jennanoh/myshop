@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react'
 import { Row,Col,Image,Card,Button, ListGroup, ListGroupItem, Form } from 'react-bootstrap'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import Loader from '../componets/Loader'
-import Message from '../componets/Message'
-import Rating from '../componets/Rating'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
+import Rating from '../components/Rating'
 import { listProductDetails } from '../actions/productActions'
 //using hooks in our components to read parameters through the useParams hook
 //we can find the product by the id in the url this way
