@@ -2,6 +2,7 @@ import {configureStore, combineReducers} from '@reduxjs/toolkit'
 import { productDetailsReducer, productListReducer } from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
 import { userLoginReducer } from './reducers/userReducers'
+import { orderCreateReducer, orderDetailsReducer, orderPayReducer } from './reducers/orderReducers'
 //register the reducers allowed to write data to the store
 //use combineReducers in the case of multiple reducers
 
@@ -9,7 +10,10 @@ const rootReducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
   cart: cartReducer,
-  userLogin: userLoginReducer
+  userLogin: userLoginReducer,
+  orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
+  orderPay: orderPayReducer
 })
 //we need to update the preloaded State of the cart by retrieving data back from local browser storage
 const cartItemsFromStorage = localStorage.getItem('cartItems') 

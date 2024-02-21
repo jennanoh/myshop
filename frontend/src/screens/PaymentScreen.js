@@ -1,14 +1,14 @@
-import {useDispatch, useSelect} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {useState} from 'react'
-import { Form, Button, Col} from 'react-bootstrap'
+import { Form, Col, Button} from 'react-bootstrap'
 import {useNavigate} from'react-router-dom'
-import CheckoutSteps from '../componets/CheckoutSteps'
-import FormContainer from '../components/FormContainer'
+import CheckoutSteps from '../components/CheckoutSteps'
+import { FormContainer } from '../components/FormContainer'
 import { savePaymentMethod } from '../actions/cartActions'
 
 const PaymentScreen = () => {
   const navigate = useNavigate()
-  const cart = useSelect((state)=> state.cart)
+  const cart = useSelector((state)=> state.cart)
   const {shippingAddress} = cart
 
   if(!shippingAddress){
@@ -25,8 +25,8 @@ const PaymentScreen = () => {
   }
 
   return(
-    <Form.Container>
-      <CheckoutSteps step1 step2 step3>
+    <FormContainer>
+      <CheckoutSteps step1 step2 step3/>
         <h1>PaymentMethod</h1>
         <Form onSubmit={submitHandler}>
           <Form.Group>
@@ -43,9 +43,11 @@ const PaymentScreen = () => {
               ></Form.Check>
             </Col>
           </Form.Group>
-        </Form>
-      </CheckoutSteps>
-    </Form.Container>
+        <Button type='submit' variant='primary'>
+          Continue
+        </Button>
+      </Form>
+    </FormContainer>
   )
-
 }
+export default PaymentScreen
