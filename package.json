@@ -11,9 +11,6 @@
     "shop": "concurrently \"npm run server\" \"npm run client\" ",
     "data:import": "node backend/seeder.js",
     "data:destroy": "node backend/seeder.je -d",
-  "engines": {
-    "node": "16.20.1"
-    },
   },
   "repository": {
     "type": "git",
