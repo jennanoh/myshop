@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/jennanoh/myshop/issues"
   },
-  "homepage": "https://github.com/jennanoh/myshop#readme",
+  "homepage": "./",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "concurrently": "^8.2.2",
