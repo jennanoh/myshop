@@ -10,8 +10,7 @@
     "client": "npm start --prefix frontend",
     "shop": "concurrently \"npm run server\" \"npm run client\" ",
     "data:import": "node backend/seeder.js",
-    "data:destroy": "node backend/seeder.je -d",
-    "build": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "data:destroy": "node backend/seeder.je -d"
   },
   "repository": {
     "type": "git",
@@ -22,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/jennanoh/myshop/issues"
   },
-  "homepage": "./",
+  "homepage": "https://github.com/jennanoh/myshop",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "concurrently": "^8.2.2",
@@ -32,8 +31,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.4",
     "nodemon": "^3.0.2",
-    "path": "^0.12.7",
-    "yarn": "^1.22.22"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
