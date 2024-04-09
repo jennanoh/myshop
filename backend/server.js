@@ -20,7 +20,7 @@ app.get('/api/config/paypal', (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID))
 
 const __dirname = path.resolve() //directory
-if (process.env.NODE_ENV === 'production'){ //if in production mode
+if (process.env.RAILWAY_ENVIRONMENT_NAME === 'production'){ //if in production mode
   app.use(express.static(path.join(__dirname, '/frontend/build')))
   app.get('*', (req, res)=>{
     res.sendFile(path.resolve(__dirname,'frontend', 'build', 'index.html'))
