@@ -9,7 +9,7 @@ import path from 'path'
 
 const app = express()
 dotenv.config()
-connectDB()
+
 
 app.use(express.json()) //data from FE will be converted to json
 app.use('/api/products', productRoutes)
@@ -34,4 +34,6 @@ app.use(errorHandler)
 //this tells you that the backend is running
 //change for the purpose of deployment - port 5000 is only guarenteed locally
 const port = process.env.PORT
-app.listen(port, console.log(`Server is running on port ${port}`))
+connectDB().then(() => {
+  app.listen(port, "0.0.0.0", console.log(`Server is running on port ${port}`))
+})
